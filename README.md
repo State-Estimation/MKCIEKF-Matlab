@@ -5,29 +5,32 @@ This work proposes a multikernel correntropy invariant extended Kalman filter (M
 
 ---
 
-## System Requirements  
-- **MATLAB 2022a** or newer  
- 
+## System Requirements
+- **MATLAB 2017b**
+
 ---
 
-## Repository Structure 
-```
-MKCIEKF_Matlab/
-├── unicycle/                           # Unicycle experiment
-│   ├── ExtendedKalmanFilter.m         - Implementation of the Extended Kalman Filter
-│   ├── InvariantEKF.m                 - Implementation of the IEKF, MCIEKF and MKCIEKF
-│   ├── UnicycleSystem.m               - Defines the unicycle system
-│   └── main.m                         - Filter comparison under unicycle 
-├── quadruped robot/                    # Quadruped robot simulation and experiment
-│   ├── iekf_mc_sim.m                  - Implementation of the MCIEKF for simulation
-│   ├── iekf_mck_real.m                - Implementation of the MKCIEKF with real data
-│   ├── iekf_mck_sim.m                 - Implementation of the MKCIEKF for simulation
-│   ├── iekf_real.m                    - Implementation of the IEKF with real data
-│   └── iekf_sim.m                     - Implementation of the IEKF for simulation
-└── images/                             # Experimental result visualization
-```
+## Example Codes and Descriptions
+
+### Unicycle Robot
+- **Objective**: Orientation and velocity estimation.
+- **Implementation**: Run "main.m" to compare the performance of EKF, IEKF, MCIEKF, and MKCIEKF on the unicycle robot.
+
+### Biped Robot
+- **Objective**: Critical orientation, pose, and velocity estimation.
+- **Implementation**: Run "run_RIEKF_test.m" to test the algorithm on the Cassie-series biped robot. The algorithm fuses IMU information and kinematic data.
+
+### Quadruped Robot
+- **Objective**: Performance comparison of IEKF, MCIEKF, and MKCIEKF.
+- **Implementation**:
+  - **Simulation**: Use "iekf_mc_sim.m" for MCIEKF, "iekf_sim.m" for IEKF and "iekf_mck_sim.m" for MKCIEKF.
+  - **Real-world experiments**: Use "iekf_mck_real.m" for MKCIEKF and "iekf_real.m" for IEKF.
+    
+### Image  
+Pre-generated figures in /image folder show.
+
 ---
 
 ## Citation
-- If you use this work in your research, please cite:
----
+If you use this work in your research, please cite the relevant publication.
+
