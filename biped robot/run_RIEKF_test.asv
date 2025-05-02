@@ -1,0 +1,87 @@
+%%
+% Detials: This is a demo code for "A Multikernel Correntropy Approach for Invariant Extended Kalman Filtering: Theory and Application"
+%         
+% Description
+%
+% Author: Shilei Li
+% Created:                         22-April-2025
+%% Script to run simulation
+clear all
+% Reset 
+clear; restoredefaultpath; clc;
+
+% Add paths
+addpath(genpath('forward_kinematics'))
+addpath('example_code')
+
+%% Open Model  
+mdl = 'RIEKF_test';
+open_system(mdl); % Simulation model
+
+%% Sim Model
+rng(42);
+
+
+
+%% Set Simulation Scenario: parameters to control the algorithms and simulation scenarios
+
+% Channel:  1= IEKF,   2= MKCIEKF,  3= MCIEKF
+% Case:     1= Case 1,  2 = Case 2
+
+Channel=3;   % Channel=1 Channel=2 Channel=3
+Case=2;     % Case=1; Case=2; 
+sim(mdl);
+
+%% Plot Results
+plot_results;
+
+
+%%
+name1=num2str(Channel);
+name2=num2str(Case);
+name=['Channel',name1,'Case',name2];
+store.X     = X;
+store.theta = theta;
+fullname    = ['D:\Bit_study\IEKF\My-Contact-Aided-Invariant-EKF-master\Contact-Aided-Invariant-EKF-master\matlab_example\data_save_analysis\',name];
+save(fullname, 'store');
+
+ 
+% 
+% %%
+% time=ikfiter.time;
+% len=length(time);
+% 
+% 
+% for i=1:len
+%     iter(i)=ikfiter.signals.values(:,:,i);
+%     cx(i,:)=ikfcx.signals.values(:,:,i);
+%     cy(i,:)=ikfcy.signals.values(:,:,i);
+%     ps(i,:)=slip.signals.values(:,:,i);
+% end
+% %    
+% figure
+% hold on
+% plot(iter)
+% legend('iteration number')
+% 
+% %
+% figure
+% hold on
+% plot(time,cx(:,10:15))
+% hold on
+% plot(time,ps*10+1)
+% legend('cx vector 10','cx vector 11','cx vector 12','cx vector 13','cx vector 14','cx vector 15','cx vector 16','injected noise')
+% 
+% 
+% figure
+% subplot(2,1,1)
+% hold on
+% plot(time,contact.Data(:,2))
+% plot(time,ps(:,1:3)*10)
+% legend('contact r','nx','ny','nz')
+% subplot(2,1,2)
+% hold on
+% plot(time,contact.Data(:,1))
+% plot(time,ps(:,4:6)*10)
+% legend('contact l','nx','ny','nz')
+

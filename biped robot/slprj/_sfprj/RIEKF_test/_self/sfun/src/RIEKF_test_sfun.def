@@ -1,0 +1,4 @@
+LIBRARY RIEKF_test_sfun.mexw64
+EXPORTS
+mexFunction
+mexfilerequiredapiversion

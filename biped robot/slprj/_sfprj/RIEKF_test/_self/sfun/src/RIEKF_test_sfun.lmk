@@ -1,0 +1,29 @@
+CC     = "D:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\bin\lcc64.exe"
+LD     = "D:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\bin\lcclnk64.exe"
+LIBCMD = "D:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\bin\lcclib64.exe"
+CFLAGS = -dll -noregistrylookup  -c -Zp8 -DLCC_WIN64 -DMATLAB_MEX_FILE -nodeclspec -DMX_COMPAT_32 
+LDFLAGS = -s -dll -L"D:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\lib64" -entry LibMain -map sfun.map 
+LIBFLAGS = 
+
+OBJECTS = \
+	"RIEKF_test_sfun.obj"\
+	"c2_RIEKF_test.obj"\
+	"RIEKF_test_sfun_registry.obj"\
+	"lccstub.obj"\
+	"c_mexapi_version.obj"\
+
+INCLUDE_PATH= -I"D:\Program Files\MATLAB\R2017b\extern\include"  -I"D:\Program Files\MATLAB\R2017b\simulink\include"  -I"D:\Program Files\MATLAB\R2017b\simulink\include\sf_runtime"  -I"D:\Program Files\MATLAB\R2017b\stateflow\c\mex\include"  -I"D:\Program Files\MATLAB\R2017b\rtw\c\src"  -I"D:\Bit_study\IEKF\Contact-Aided-Invariant-EKF-master (2)\Contact-Aided-Invariant-EKF-master\matlab_example\slprj\_sfprj\RIEKF_test\_self\sfun\src"  -I"D:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\include64" 
+ 
+
+RIEKF_test_sfun.mexw64 : $(MAKEFILE) $(OBJECTS)
+	$(LD) $(LDFLAGS) -o RIEKF_test_sfun.mexw64 @RIEKF_test_sfun.lmko
+RIEKF_test_sfun.obj :	"RIEKF_test_sfun.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "RIEKF_test_sfun.c"
+c2_RIEKF_test.obj :	"c2_RIEKF_test.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c2_RIEKF_test.c"
+RIEKF_test_sfun_registry.obj :	"RIEKF_test_sfun_registry.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "RIEKF_test_sfun_registry.c"
+lccstub.obj :	"D:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\mex\lccstub.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "D:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\mex\lccstub.c"
+c_mexapi_version.obj :	"D:\Program Files\MATLAB\R2017b\extern\version\c_mexapi_version.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "D:\Program Files\MATLAB\R2017b\extern\version\c_mexapi_version.c"
